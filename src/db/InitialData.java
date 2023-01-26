@@ -3,8 +3,10 @@ package db;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-
+import repository.UserLoginRepository;
+import repository.UserRepository;
 import repository.DramaRepository;
+
 
 public class InitialData {
 	public InitialData() {
@@ -14,8 +16,12 @@ public class InitialData {
 			int counter = 0;
 
 			DramaRepository dramaRepository = new DramaRepository();
-			dramaRepository.createTable();
-
+			dramaRepository.createDramaTable();
+			UserRepository userRepository = new UserRepository();
+			userRepository.createUserTable();
+			UserLoginRepository userLoginRepository = new UserLoginRepository();
+			userLoginRepository.createUserLoginTable();
+			
 			while ((line = goCSV.nextRead()) != null) {
 				if (counter < 1) {
 					counter++;
@@ -25,10 +31,11 @@ public class InitialData {
 					dramaRepository.insertTable(list);
 					
 				}
-
+			
 				
 
 			}
+			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();

@@ -12,7 +12,7 @@ public class DBConnection {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			setConn(DriverManager.getConnection(url,id,password));
-			System.out.println("연동성공");
+		;
 		}
 		catch (Exception e){
 			System.out.println("실헹실패");
