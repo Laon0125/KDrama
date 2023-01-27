@@ -107,6 +107,14 @@ public class Drama {
 	public void setRank(String rank) {
 		this.rank = rank;
 	}
+	@Override
+	public String toString() {
+		return "Drama [name=" + name + ", airedDate=" + airedDate + ", releasedYear=" + releasedYear + ", VOD=" + VOD
+				+ ", airedOn=" + airedOn + ", numberOfEpisode=" + numberOfEpisode + ", duration=" + duration
+				+ ", contentRating=" + contentRating + ", rating=" + rating + ", genre=" + genre + ", tag=" + tag
+				+ ", director=" + director + ", cast=" + cast + ", productionCompany=" + productionCompany + ", rank="
+				+ rank + "]";
+	}
 
 	
 }

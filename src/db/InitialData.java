@@ -4,14 +4,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import repository.UserLoginRepository;
-import repository.UserRepository;
-import repository.DramaRepository;
-
+import repository.*;
 
 public class InitialData {
 	public InitialData() {
 		try {
-			GoCSV goCSV = new GoCSV("/Users/Laon/Downloads/kdrama.csv");
+			GoCSV goCSV = new GoCSV("/Users/Laon/Downloads/kdrama 2.csv");
 			String[] line = null;
 			int counter = 0;
 
@@ -21,6 +19,7 @@ public class InitialData {
 			userRepository.createUserTable();
 			UserLoginRepository userLoginRepository = new UserLoginRepository();
 			userLoginRepository.createUserLoginTable();
+			
 			
 			while ((line = goCSV.nextRead()) != null) {
 				if (counter < 1) {
@@ -32,9 +31,11 @@ public class InitialData {
 					
 				}
 			
-				
-
 			}
+			dramaRepository.updateOriginalNetwork();
+			PlatformRepository platform = new PlatformRepository();
+			platform.createPlatformTable();
+			platform.insertPlatform();
 			
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

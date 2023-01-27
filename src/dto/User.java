@@ -5,20 +5,20 @@ import java.sql.ResultSet;
 public class User {
 	int userId;
 	String userName;
-	int vod;
+	String vod;
 	int birthYear;
 	public User() {}
 	
 	public User(ResultSet rs) {
 		try {
 			this.userName = rs.getString("userName");
-			this.vod = rs.getInt("vod");
+			this.vod = rs.getString("pName");
 			this.birthYear = rs.getInt("birthYear");
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 	}
-	public User(int userId, String userName, int dramaId, int vod, String birth) {
+	public User(int userId, String userName, int dramaId, String vod, String birth) {
 		super();
 		this.userId = userId;
 		this.userName = userName;
@@ -31,10 +31,10 @@ public class User {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public int getVod() {
+	public String getVod() {
 		return vod;
 	}
-	public void setVod(int vod) {
+	public void setVod(String vod) {
 		this.vod = vod;
 	}
 	public User(int userId, int dramaId, String birth) {

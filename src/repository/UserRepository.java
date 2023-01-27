@@ -25,12 +25,15 @@ public class UserRepository {
 		
 		String sql = "create table User("
 				+ "userId int primary key auto_increment,"
-				+ "userName varchar(50) not null,"
+				+ "userName varchar(255) not null,"
 				+ "vod int,"
 				+ "birthYear int not null"
 				+ ")";
+		String preInsert = "insert into User(userName, vod, birthYear)" 
+				+ "values " + "('진', '3','1998'),"
+				+ "('김진우', '4','1995')," + "('김한휘', '2', '2008')," + "('지누', '3','2020')," + "('라라', '3','2020')";
 		
-		String[] sqls = new String[]{"drop table if exists User ", sql};
+		String[] sqls = new String[]{"drop table if exists User ", sql,preInsert};
 		for(String str: sqls) {
 			try {
 				conn = new DBConnection().getConn();
@@ -63,7 +66,10 @@ public class UserRepository {
 	public User findUser(int userId) { 
 		User user = new User();
 		conn = new DBConnection().getConn();
-		String sql = "select * from user where userId = ?";
+		String sql = "select u.userName, p.pName, u.birthYear from "
+				+ "user as u "
+				+ "left join platform as p on p.pId = u.VOD "
+				+ "where userId = ?";
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, userId);
